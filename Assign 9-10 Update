@@ -1,0 +1,86 @@
+
+
+
+____________________Assignment 9_____________________________________
+Implement and execute HiveQL queries to perform data retrieval and manipulation.
+1. Setting up Hive
+    Hive
+
+
+2. Creating a Hive Table
+    CREATE TABLE employees (emp_id INT, emp_name STRING, emp_salary DOUBLE,emp_department STRING ) 
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+    STORED AS TEXTFILE;
+
+
+3. Data Manipulation
+    a. Inserting Data into the Table:
+        INSERT INTO TABLE employees VALUES (1001, 'John Doe', 60000.00,'Engineering');
+        INSERT INTO TABLE employees VALUES (1002, 'John', 45000.00,'Marketing');
+        INSERT INTO TABLE employees VALUES (1003, 'Bob Builder', 65000.00,'Hr');
+
+
+    b. Updating Data:
+        INSERT OVERWRITE TABLE employees
+        SELECT emp_id, emp_name, CASE WHEN emp_salary < 50000 THEN emp_salary * 1.1
+        ELSE emp_salary
+        END AS emp_salary, emp_department
+        FROM employees;
+
+    c. Deleting Data:
+        INSERT OVERWRITE TABLE employees
+        SELECT * FROM employees WHERE emp_id <> 1001;
+
+
+4. Basic Data Retrieval Queries
+    a. Select all records:
+         SELECT * FROM employees;
+    b. Select specific columns:
+         SELECT emp_name, emp_salary FROM employees;
+    c. Select with a WHERE clause:
+         SELECT * FROM employees WHERE emp_salary > 50000;
+         
+_____________________________________________________Assignment 10____________________________________________________________________________
+
+Perform operations like joins, group by, and aggregations in Hive.
+1. Creating a Hive Table
+      CREATE TABLE employees (
+       emp_id INT,
+       emp_name STRING,
+       emp_salary DOUBLE,
+       emp_department STRING
+      ) ROW FORMAT DELIMITED
+      FIELDS TERMINATED BY ','
+      STORED AS TEXTFILE;
+      
+      CREATE TABLE departments (
+       dept_id INT,
+       dept_name STRING,
+      ) ROW FORMAT DELIMITED
+      FIELDS TERMINATED BY ','
+      STORED AS TEXTFILE;
+
+
+Insert 5 record on each table by using insert command
+
+
+2. Joins
+    SELECT e.emp_name, d.dept_name
+    FROM employees e
+    JOIN departments d
+    ON e.emp_id = d.dept_id;
+
+NOTE : The emp_id values are same as dept_id without the ouput is not shown. 
+ 
+3. Aggregate Functions
+    a. Count the number of employees:
+            SELECT COUNT(*) FROM employees;
+    b. Find the average salary:
+            SELECT AVG(emp_salary) FROM employees;
+    c. Find the highest salary:
+           SELECT MAX(emp_salary) FROM employees;
+
+4. Group By
+      Group by department and get average salary per department:
+       SELECT emp_department, AVG(emp_salary) FROM employees GROUP BY emp_department;
