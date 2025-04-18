@@ -2,22 +2,27 @@
 Implement a Java program to interact with HDFS (reading and writing files).
 
 import java.io.File;
-public class filehand {
- public static void main(String []args) throws IOException
- {
- File obj1=new File(“/home/cloudera/Desktop/Firstfile.txt”);
- if (obj1.createNewFile())
- System.out.print(“File is Created”);
- else
- System.out.print(“File is Already exist”);
- FileWrite w1=new FileWriter(“/home/cloudera/Desktop/Firstfile.txt”);
- w1.write(“Welcome my first file is write”);
- w1.close();
- Scanner r1=new Scanner(obj1);
- while(r1.hasNextLine())
- {
- String data=r1.nextLine();
- System.out.println(data);
- }
- }
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+
+public class Filehandling {
+    public static void main(String []args)throws IOException{
+           File obj = new File("/home/cloudera/Desktop/Firstfile.txt");
+           if(obj.createNewFile())
+               System.out.println("File is Created");
+           else
+               System.out.println("File is Already exist");
+           
+           FileWriter w = new FileWriter("/home/cloudera/Desktop/Firstfile.txt");
+           w.write("Welcome my first file is write");
+           w.close();
+           Scanner sc = new Scanner(obj);
+           while(sc.hasNextLine()){
+               String data=sc.nextLine();
+               System.out.println(data);
+           }
+    }
 }
+
