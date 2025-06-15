@@ -82,3 +82,7 @@ hdfs dfs –ls /user/cloudera/outputfile
 
 4) Show outputfile
 hdfs dfs –cat /user/cloudera/outputfile/part-r-00000
+
+
+https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html#Source_Code
+
